@@ -4,8 +4,6 @@ run-name: "Deploy to prd by @${{ github.actor }}"
 on:
   deployment:
 
-permissions: write-all
-
 jobs:
   deploy-prod:
     name: "Deploy to PRD"
