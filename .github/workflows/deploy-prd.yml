@@ -11,3 +11,4 @@ jobs:
     uses: hwolf/workflows/.github/workflows/deploy.yml@main
     with:
       environment: "prd"
+      runner: ubuntu-latest
