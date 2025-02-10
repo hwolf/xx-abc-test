@@ -10,20 +10,17 @@ on:
     branches:
       - main
 
-env:
-  runner: xubuntu-lastestx
-
 jobs:
   build:
     name: 'Build'
     uses: hwolf/workflows/.github/workflows/build.yml@main
     with:
       publish-image: false
-      runner: $runner
+      runner: ubuntu-lastest
     secrets: inherit
 
   terraform:
     name: 'Terraform'
     uses: hwolf/workflows/.github/workflows/verify-terraform.yml@main
     with:
-      runner: $runner
+      runner: ubuntu-lastest
