@@ -19,12 +19,16 @@ on:
         default: test
         description: Deploy to environment?
 
+env:
+  runner: ubuntu-lastest
+
 jobs:
   build:
     name: 'Build'
     uses: hwolf/workflows/.github/workflows/build.yml@main
     with:
       publish-image: "${{ inputs.environment != 'none' }}"
+      runner: "${{ env.runner }}"
     secrets: inherit
 
   terraform:
