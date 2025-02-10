@@ -1,0 +1,42 @@
+name: "Build and deploy"
+run-name: "Build and deploy branch ${{ github.ref_name }} to ${{ inputs.environment || 'qa' }} by @${{ github.actor }}"
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        options:
+          - none
+          - dev
+          - test
+          - qa
+        default: test
+        description: Deploy to environment?
+
+jobs:
+  build:
+    name: 'Build'
+    uses: hwolf/workflows/.github/workflows/build.yml@main
+    with:
+      publish-image: ${{ inputs.environment != 'none' }}
+    secrets: inherit
+
+  terraform:
+    name: 'Terraform'
+    uses: hwolf/workflows/.github/workflows/verify-terraform.yml@main
+
+  deploy:
+    name: 'Deploy'
+    if: inputs.environment != 'none'
+    needs:
+      - build
+      - terraform
+    uses: hwolf/workflows/.github/workflows/deploy.yml@main
+    with:
+      revision: "${{ needs.build.outputs.revision }}"
+      environment: "${{ inputs.environment || 'qa' }}"
+    secrets: inherit

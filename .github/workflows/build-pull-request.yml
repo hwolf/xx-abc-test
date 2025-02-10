@@ -1,0 +1,23 @@
+name: "Build pull request"
+run-name: "Build PR ${{ github.event.number }} (${{ github.head_ref }}) by @${{ github.actor }}"
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+    branches:
+      - main
+
+jobs:
+  build:
+    name: 'Build'
+    uses: hwolf/workflows/.github/workflows/build.yml@main
+    with:
+      publish-image: ${{ inputs.environment != 'none' }}
+    secrets: inherit
+
+  terraform:
+    name: 'Terraform'
+    uses: hwolf/workflows/.github/workflows/verify-terraform.yml@main
