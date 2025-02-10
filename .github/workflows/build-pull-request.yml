@@ -19,8 +19,11 @@ jobs:
     uses: hwolf/workflows/.github/workflows/build.yml@main
     with:
       publish-image: false
+      runner: "${{ env.runner }}"
     secrets: inherit
 
   terraform:
     name: 'Terraform'
     uses: hwolf/workflows/.github/workflows/verify-terraform.yml@main
+    with:
+      runner: "${{ env.runner }}"
