@@ -1,5 +1,5 @@
 name: "Deploy to PRD"
-run-name: "Deploy to prd by @${{ github.actor }}"
+run-name: "Start deploy to prd by @${{ github.actor }}"
 
 on:
   deployment_status:
