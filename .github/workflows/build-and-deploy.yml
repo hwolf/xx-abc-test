@@ -1,8 +1,6 @@
 name: "Build and deploy"
 run-name: "Build and deploy branch ${{ github.ref_name }} to environment ${{ inputs.environment || 'qa' }} by @${{ github.actor }}"
 
-permissions: write-all
-
 on:
   push:
     branches:
