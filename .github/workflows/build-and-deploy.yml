@@ -25,11 +25,14 @@ jobs:
     uses: hwolf/workflows/.github/workflows/build.yml@main
     with:
       publish-image: "${{ inputs.environment != 'none' }}"
+      runner: ubuntu-latest
     secrets: inherit
 
   terraform:
     name: 'Terraform'
     uses: hwolf/workflows/.github/workflows/verify-terraform.yml@main
+    with:
+      runner: ubuntu-latest
 
   deploy:
     name: 'Deploy'
@@ -40,4 +43,5 @@ jobs:
     uses: hwolf/workflows/.github/workflows/deploy.yml@main
     with:
       environment: "${{ inputs.environment || 'qa' }}"
+      runner: ubuntu-latest
     secrets: inherit
