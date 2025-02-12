@@ -17,6 +17,9 @@ on:
         default: test
         description: Deploy to environment?
 
+permissions:
+  packages: write
+
 jobs:
   build:
     name: 'Build'
