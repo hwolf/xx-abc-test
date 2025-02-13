@@ -15,7 +15,6 @@ jobs:
     name: 'Build'
     uses: hwolf/workflows/.github/workflows/build.yml@main
     with:
-      publish-image: false
       runner: ubuntu-latest
     secrets: inherit
 
