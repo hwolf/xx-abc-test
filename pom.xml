@@ -14,16 +14,18 @@
 
     <properties>
         <revision>local</revision>
-        <java.version>17</java.version>
-        <docker.imageName>ghcr.io/hwolf/xxx/test/xx-abc-test:${project.version}</docker.imageName>
-
+        <java.version>21</java.version>
         <sonar.organization>hwolf</sonar.organization>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
         <dependency>
@@ -36,13 +38,41 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>io.github.git-commit-id</groupId>
+                <artifactId>git-commit-id-maven-plugin</artifactId>
+                <configuration>
+                    <excludeProperties>
+                        <property>git.build.host</property>
+                        <property>git.build.time</property>
+                        <property>git.build.user.email</property>
+                        <property>git.build.user.name</property>
+                        <property>git.build.version</property>
+                        <property>git.commit.author.time</property>
+                        <property>git.commit.user.email</property>
+                        <property>git.commit.user.name</property>
+                    </excludeProperties>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.cyclonedx</groupId>
+                <artifactId>cyclonedx-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <image>
-                        <name>${docker.imageName}</name>
-                    </image>
-                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build-info</goal>
+                        </goals>
+                        <configuration>
+                            <excludeInfoProperties>
+                                <property>time</property>
+                                <property>version</property>
+                            </excludeInfoProperties>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
