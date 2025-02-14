@@ -24,6 +24,11 @@ env:
   IMAGE_NAME: $IMAGE_NAME
 
 jobs:
+  dump:
+    run: |
+      echo "${{ toJson(env) }}"
+      env | sort
+
   build:
     name: 'Build'
     uses: hwolf/workflows/.github/workflows/build.yml@main
