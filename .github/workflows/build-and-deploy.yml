@@ -27,9 +27,10 @@ jobs:
   dump:
     name: Dump
     runs-on: ubuntu-latest
-    run: |
-      echo "${{ toJson(env) }}"
-      env | sort
+    steps:
+      - run: |
+          echo "${{ toJson(env) }}"
+          env | sort
 
   build:
     name: 'Build'
