@@ -25,6 +25,8 @@ env:
 
 jobs:
   dump:
+    name: Dump
+    runs-on: ubuntu-latest
     run: |
       echo "${{ toJson(env) }}"
       env | sort
