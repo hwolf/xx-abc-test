@@ -13,6 +13,6 @@ jobs:
     if: github.event.deployment_status.environment == 'qa' && github.event.deployment_status.state == 'success'
     uses: hwolf/workflows/.github/workflows/deploy.yml@main
     with:
-      imageName: ${{ env.IMAGE_NAME }}
+      imageName: ${{ vars.IMAGE_NAME }}
       environment: "prd"
       runner: ubuntu-latest
