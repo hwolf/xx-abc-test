@@ -20,6 +20,9 @@ on:
 permissions:
   packages: write
 
+env:
+  IMAGE_NAME: $IMAGE_NAME
+
 jobs:
   build:
     name: 'Build'

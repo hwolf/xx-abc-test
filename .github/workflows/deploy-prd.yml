@@ -4,6 +4,9 @@ run-name: "Start deploy ${{ github.sha }} to prd by @${{ github.actor }}"
 on:
   deployment_status:
 
+env:
+  IMAGE_NAME: $IMAGE_NAME
+
 jobs:
   deploy-prod:
     name: "Deploy to PRD"
