@@ -20,8 +20,8 @@ on:
 permissions:
   packages: write
 
-env:
-  IMAGE_NAME: $IMAGE_NAME
+#env:
+#  IMAGE_NAME: "$IMAGE_NAME"
 
 jobs:
   dump:
