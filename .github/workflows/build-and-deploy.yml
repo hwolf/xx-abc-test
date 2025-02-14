@@ -21,14 +21,6 @@ permissions:
   packages: write
 
 jobs:
-  dump:
-    name: Dump
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo "${{ toJson(env) }}"
-          env | sort
-
   build:
     name: 'Build'
     uses: hwolf/workflows/.github/workflows/build.yml@main
