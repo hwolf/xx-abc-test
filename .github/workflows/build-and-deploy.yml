@@ -53,7 +53,7 @@ jobs:
       - terraform
     uses: hwolf/workflows/.github/workflows/publish-image.yml@main
     with:
-      imageName: ${{ env.IMAGE_NAME }}
+      #imageName: ${{ env.IMAGE_NAME }}
       runner: ubuntu-latest
 
   deploy:
@@ -63,7 +63,7 @@ jobs:
       - publish
     uses: hwolf/workflows/.github/workflows/deploy.yml@main
     with:
-      imageName: ${{ env.IMAGE_NAME }}
+      #imageName: ${{ env.IMAGE_NAME }}
       environment: "${{ inputs.environment || 'qa' }}"
       runner: ubuntu-latest
     secrets: inherit
