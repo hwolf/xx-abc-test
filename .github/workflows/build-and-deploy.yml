@@ -19,7 +19,10 @@ on:
 
 permissions:
   packages: write
+  contents: write
+  statuses: write
   checks: write
+  actions: write
 
 jobs:
   build:
