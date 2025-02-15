@@ -12,7 +12,6 @@ public class SampleController {
         if (produceError) {
             throw new NullPointerException("error");
         }
-        String x = null;
-        return "Hello World " + x.length();
+        return "Hello World";
     }
 }
