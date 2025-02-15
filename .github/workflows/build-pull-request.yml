@@ -14,7 +14,7 @@ permissions:
   contents: write
   statuses: write
   checks: write
-  actions: write
+#  actions: write
 
 jobs:
   build:
