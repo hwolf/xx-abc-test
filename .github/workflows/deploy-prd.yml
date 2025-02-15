@@ -4,11 +4,15 @@ run-name: "Start deploy ${{ github.sha }} to prd by @${{ github.actor }}"
 on:
   deployment_status:
 
+env:
+  IMAGE_NAME: $IMAGE_NAME
+
 jobs:
   deploy-prod:
     name: "Deploy to PRD"
     if: github.event.deployment_status.environment == 'qa' && github.event.deployment_status.state == 'success'
     uses: hwolf/workflows/.github/workflows/deploy.yml@main
     with:
+      imageName: ${{ vars.IMAGE_NAME }}
       environment: "prd"
       runner: ubuntu-latest

@@ -10,12 +10,14 @@ on:
     branches:
       - main
 
+permissions:
+  checks: write
+
 jobs:
   build:
     name: 'Build'
     uses: hwolf/workflows/.github/workflows/build.yml@main
     with:
-      publish-image: false
       runner: ubuntu-latest
     secrets: inherit
 

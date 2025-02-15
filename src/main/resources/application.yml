@@ -1,0 +1,21 @@
+
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: always
+  endpoints:
+    access:
+      default: read_only
+    web:
+      exposure:
+        include: health,info,prometheus,sbom
+  health:
+    diskspace:
+      enabled: false
+  info:
+    java:
+      enabled: true
+  server:
+    port: 8081

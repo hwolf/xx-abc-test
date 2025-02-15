@@ -17,12 +17,15 @@ on:
         default: test
         description: Deploy to environment?
 
+permissions:
+  checks: write
+  packages: write
+
 jobs:
   build:
     name: 'Build'
     uses: hwolf/workflows/.github/workflows/build.yml@main
     with:
-      publish-image: "${{ inputs.environment != 'none' }}"
       runner: ubuntu-latest
     secrets: inherit
 
@@ -32,14 +35,25 @@ jobs:
     with:
       runner: ubuntu-latest
 
-  deploy:
-    name: 'Deploy'
+  publish:
+    name: 'Publish image'
     if: inputs.environment != 'none'
     needs:
       - build
       - terraform
+    uses: hwolf/workflows/.github/workflows/publish-image.yml@main
+    with:
+      imageName: ${{ vars.IMAGE_NAME }}
+      runner: ubuntu-latest
+
+  deploy:
+    name: 'Deploy'
+    if: inputs.environment != 'none'
+    needs:
+      - publish
     uses: hwolf/workflows/.github/workflows/deploy.yml@main
     with:
+      imageName: ${{ vars.IMAGE_NAME }}
       environment: "${{ inputs.environment || 'qa' }}"
       runner: ubuntu-latest
     secrets: inherit
