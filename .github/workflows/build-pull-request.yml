@@ -11,10 +11,8 @@ on:
       - main
 
 permissions:
-  contents: write
-#  statuses: write
+#  contents: write
   checks: write
-#  actions: write
 
 jobs:
   build:
