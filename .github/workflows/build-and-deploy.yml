@@ -18,11 +18,8 @@ on:
         description: Deploy to environment?
 
 permissions:
-  packages: write
-  contents: write
-  statuses: write
   checks: write
-  actions: write
+  packages: write
 
 jobs:
   build:
