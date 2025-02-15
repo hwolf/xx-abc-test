@@ -16,7 +16,6 @@
         <revision>local</revision>
         <java.version>21</java.version>
         <project.build.outputTimestamp>${git.commit.time}</project.build.outputTimestamp>
-        <!--<project.build.outputTimestamp>2020-01-01T00:00:00Z</project.build.outputTimestamp>-->
         <sonar.organization>hwolf</sonar.organization>
     </properties>
 
