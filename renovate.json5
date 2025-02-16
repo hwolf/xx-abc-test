@@ -12,8 +12,8 @@
         '^pom.xml$',
       ],
       matchStrings: [
-        '<image.builder>(?<depName>(?:gcr\\.io|docker\\.io)\/[^:]+?):(?<currentValue>[^@]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?<\/image.builder>',
-        '<image.runImage>(?<depName>(?:gcr\\.io|docker\\.io)\/[^:]+?):(?<currentValue>[^@]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?<\/image.runImage>',
+        '<image.builder>(?<depName>[^\\s:@\"]+)(?::(?<currentValue>[-a-zA-Z0-9.]+))?(?:@(?<currentDigest>sha256:[a-zA-Z0-9]+))<\/image.builder>',
+        '<image.runImage>(?<depName>[^\\s:@\"]+)(?::(?<currentValue>[-a-zA-Z0-9.]+))?(?:@(?<currentDigest>sha256:[a-zA-Z0-9]+))<\/image.runImage>',
       ],
       datasourceTemplate: 'docker',
       versioningTemplate: 'docker',
