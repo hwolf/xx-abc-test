@@ -4,8 +4,8 @@ run-name: "Start deploy ${{ github.sha }} to prd by @${{ github.actor }}"
 on:
   deployment_status:
 
-env:
-  IMAGE_NAME: $IMAGE_NAME
+permissions:
+  contents: write
 
 jobs:
   deploy-prod:
