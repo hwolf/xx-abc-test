@@ -1,19 +1,22 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   extends: [
-    "config:base"
+    'config:recommended',
   ],
   pinDigests: true,
-  regexManagers: [
+  customManagers: [
     {
-      description: "Update docker references in pom.xml",
-      fileMatch: ["^pom.xml$"],
-      matchStrings: [
-        "<image.builder>(?<depName>(?:gcr\.io|docker\.io)\/[^:]+?):(?<currentValue>[^@]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?<\/image.builder>",
-        "<image.runImage>(?<depName>(?:gcr\.io|docker\.io)\/[^:]+?):(?<currentValue>[^@]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?<\/image.runImage>",
+      customType: 'regex',
+      description: 'Update docker references in pom.xml',
+      fileMatch: [
+        '^pom.xml$',
       ],
-      datasourceTemplate: "docker",
-      versioningTemplate: "docker"
-    }
-  ]
+      matchStrings: [
+        '<image.builder>(?<depName>(?:gcr.io|docker.io)/[^:]+?):(?<currentValue>[^@]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?</image.builder>',
+        '<image.runImage>(?<depName>(?:gcr.io|docker.io)/[^:]+?):(?<currentValue>[^@]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?</image.runImage>',
+      ],
+      datasourceTemplate: 'docker',
+      versioningTemplate: 'docker',
+    },
+  ],
 }
