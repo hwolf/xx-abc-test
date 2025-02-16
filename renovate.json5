@@ -9,8 +9,8 @@
       description: "Update docker references in pom.xml",
       fileMatch: ["^pom.xml$"],
       matchStrings: [
-        "<image.builder>(?<depName>(?:.*)\\/[^:]+?):(?<currentValue>[^@]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?<\/image.builder>",
-        "<image.runImage>(?<depName>(?:.*)\\/[^:]+?):(?<currentValue>[^@]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?<\/image.runImage>",
+        "<image.builder>(?<depName>(?:gcr\.io|docker\.io)\/[^:]+?):(?<currentValue>[^@]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?<\/image.builder>",
+        "<image.runImage>(?<depName>(?:gcr\.io|docker\.io)\/[^:]+?):(?<currentValue>[^@]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?<\/image.runImage>",
       ],
       datasourceTemplate: "docker",
       versioningTemplate: "docker"
