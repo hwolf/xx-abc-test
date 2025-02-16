@@ -15,7 +15,23 @@
     <properties>
         <revision>local</revision>
         <java.version>21</java.version>
+
         <project.build.outputTimestamp>${git.commit.time}</project.build.outputTimestamp>
+        <!-- @formatter:off -->
+        <image.builder>paketobuildpacks/builder-jammy-java-tiny@sha256:a84b2563e67c4441bd60350a7a0abf90e85df85cd8a91d4e4bdbded62b783ec9</image.builder>
+        <image.runImage>paketobuildpacks/run-jammy-tiny@sha256:0c5ac79d549c4b077a7d857631f817f8b573f5da2c109a51f320ee584d44d3f2</image.runImage>
+        <!-- @formatter:on -->
+
+        <docker.registry>ghcr.io</docker.registry>
+        <docker.domain>xxx/test</docker.domain>
+        <docker.imageTag>${project.version}</docker.imageTag>
+        <docker.imageName>
+            ${docker.registry}/${docker.domain}/${project.artifactId}:${docker.imageTag}
+        </docker.imageName>
+        <docker.publish>false</docker.publish>
+        <docker.username/>
+        <docker.password/>
+
         <sonar.organization>hwolf</sonar.organization>
     </properties>
 
@@ -61,6 +77,23 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <image>
+                        <name>${docker.imageName}</name>
+                        <builder>${image.builder}</builder>
+                        <runImage>${image.runImage}</runImage>
+                        <publish>${docker.publish}</publish>
+                        <env>
+                            <BP_JVM_JLINK_ENABLED>true</BP_JVM_JLINK_ENABLED>
+                        </env>
+                    </image>
+                    <docker>
+                        <publishRegistry>
+                            <username>${docker.username}</username>
+                            <password>${docker.password}</password>
+                        </publishRegistry>
+                    </docker>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
