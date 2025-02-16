@@ -23,7 +23,7 @@
         <!-- @formatter:on -->
 
         <docker.registry>ghcr.io</docker.registry>
-        <docker.domain>xxx/test</docker.domain>
+        <docker.domain>hwolf/xxx/test</docker.domain>
         <docker.imageTag>${project.version}</docker.imageTag>
         <docker.imageName>
             ${docker.registry}/${docker.domain}/${project.artifactId}:${docker.imageTag}
