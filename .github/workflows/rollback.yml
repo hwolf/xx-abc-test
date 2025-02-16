@@ -1,0 +1,30 @@
+name: "Rollback"
+run-name: "Rollback ${{ github.sha }} to ${{ inputs.environment }} by @${{ github.actor }}"
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        options:
+          - dev
+          - test
+          - qa
+          - prd
+        default: test
+        description: Rollback environment?
+
+jobs:
+  dump:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${{ github.ref_name }}"
+
+  deploy:
+    name: "Rollback"
+    if: ${{ startsWith(github.ref_name, 'prd-') }}
+    uses: hwolf/workflows/.github/workflows/deploy.yml@main
+    with:
+      imageName: ${{ vars.IMAGE_NAME }}
+      environment: ${{ inputs.environment }}
+      runner: ubuntu-latest
