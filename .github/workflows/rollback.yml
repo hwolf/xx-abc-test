@@ -15,11 +15,6 @@ on:
         description: Rollback environment?
 
 jobs:
-  dump:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "${{ github.ref_name }}"
-
   deploy:
     name: "Rollback"
     if: ${{ startsWith(github.ref_name, 'prd-') }}
