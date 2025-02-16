@@ -16,6 +16,7 @@
         <revision>local</revision>
         <java.version>21</java.version>
 
+        <git.commit.time/>
         <project.build.outputTimestamp>${git.commit.time}</project.build.outputTimestamp>
         <!-- @formatter:off -->
         <image.builder>paketobuildpacks/builder-jammy-java-tiny@sha256:a84b2563e67c4441bd60350a7a0abf90e85df85cd8a91d4e4bdbded62b783ec9</image.builder>
@@ -23,7 +24,7 @@
         <!-- @formatter:on -->
 
         <docker.registry>ghcr.io</docker.registry>
-        <docker.domain>xxx/test</docker.domain>
+        <docker.domain>hwolf/xx/test</docker.domain>
         <docker.imageTag>${project.version}</docker.imageTag>
         <docker.imageName>
             ${docker.registry}/${docker.domain}/${project.artifactId}:${docker.imageTag}
