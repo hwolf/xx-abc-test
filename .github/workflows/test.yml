@@ -1,0 +1,30 @@
+name: "Test"
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        options:
+          - none
+          - dev
+          - test
+          - qa
+        default: test
+        description: Deploy to environment?
+
+permissions:
+  checks: write
+  packages: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test
+        run: |
+          echo "XXX ${{ inputs.environment }}"
+          echo "XXX ${{ inputs.environment || inputs.environment == 'none' || 'dev' }}"
