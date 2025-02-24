@@ -21,6 +21,9 @@ permissions:
   checks: write
   packages: write
 
+env:
+  runner: "${{ inputs.environment != 'none' && inputs.environment || 'qa' }}"
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -29,3 +32,4 @@ jobs:
         run: |
           echo "XXX ${{ inputs.environment }}"
           echo "XXX ${{ inputs.environment != 'none' && inputs.environment || 'qa' }}"
+          echo "RRR ${{ env.runner }}"
