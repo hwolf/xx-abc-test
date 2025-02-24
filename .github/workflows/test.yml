@@ -1,4 +1,5 @@
 name: "Test"
+run-name: "Test ${{ inputs.environment }} -> ${{ inputs.environment && inputs.environment != 'none' && inputs.environment || 'qa' }}"
 
 on:
   push:
