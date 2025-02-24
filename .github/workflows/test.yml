@@ -28,4 +28,4 @@ jobs:
       - name: Test
         run: |
           echo "XXX ${{ inputs.environment }}"
-          echo "XXX ${{ inputs.environment && inputs.environment != 'none' && inputs.environment || 'qa' }}"
+          echo "XXX ${{ inputs.environment != 'none' && inputs.environment || 'qa' }}"
