@@ -27,4 +27,4 @@ jobs:
       - name: Test
         run: |
           echo "XXX ${{ inputs.environment }}"
-          echo "XXX ${{ inputs.environment == 'none' || inputs.environment || 'dev' }}"
+          echo "XXX ${{ inputs.environment || 'qa' && inputs.environment == 'none' || 'dev' }}"
