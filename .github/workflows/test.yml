@@ -25,10 +25,10 @@ jobs:
 
           parent=${image#*/}
           parent=${parent%/*}
-          parent=${parent//\//-}
-          
+          echo "parent=${parent//\//-}" >> %GITHUB_ENV
+
           project=${image##*/}
-          project=${project%:*}
+          echo "project=${project%:*}" >> %GITHUB_ENV
 
       - name: Download SBOMs
         run: |
