@@ -5,24 +5,6 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
-    inputs:
-      environment:
-        type: choice
-        options:
-          - none
-          - dev
-          - test
-          - qa
-        default: test
-        description: Deploy to environment?
-
-permissions:
-  checks: write
-  packages: write
-
-env:
-  runner: "${{ inputs.environment != 'none' && inputs.environment || 'qa' }}"
 
 jobs:
   test:
@@ -30,6 +12,4 @@ jobs:
     steps:
       - name: Test
         run: |
-          echo "XXX ${{ inputs.environment }}"
-          echo "XXX ${{ inputs.environment != 'none' && inputs.environment || 'qa' }}"
-          echo "RRR ${{ env.runner }}"
+          pack --version
