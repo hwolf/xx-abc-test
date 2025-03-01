@@ -11,16 +11,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: Homebrew/actions/setup-homebrew@master
-      - name: Test
+      - name: Setup
         run: |
-          brew --version
           brew tap buildpacks/tap
           brew install pack
-          
-          pack --version
-          pack sbom download --remote ghcr.io/hwolf/xx/test/xx-abc-test:c45b8be14b8dbb3d596c77d14b5331813a48c02b
-          find . -name \*.json
-          
           brew tap cyclonedx/cyclonedx
           brew install cyclonedx-cli
-          cyclonedx --version
+
+      - name: Download SBOMs
+        run: |
+          pack sbom download --remote ghcr.io/hwolf/xx/test/xx-abc-test:c45b8be14b8dbb3d596c77d14b5331813a48c02b
+
+      - name: Merge SBOMs
+        run: |
+          cyclonedx merge \
+            --input-files $(find layers -name sbom.cdx.json) \
+            --output-file sbom.json
+
+      - name: Upload SBOM to DTrack
+        run: |
+          echo Todo
