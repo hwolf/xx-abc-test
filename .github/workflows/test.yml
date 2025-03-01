@@ -19,7 +19,7 @@ jobs:
           
           pack --version
           pack sbom download --remote ghcr.io/hwolf/xx/test/xx-abc-test:c45b8be14b8dbb3d596c77d14b5331813a48c02b
-          ls -lR layers
+          find . -name \*.json
           
           brew tap cyclonedx/cyclonedx
           brew install cyclonedx-cli
