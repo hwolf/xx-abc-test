@@ -49,9 +49,9 @@ jobs:
         with:
           serverhostname: 'example.com'
           apikey: ${{ env.apiKey }}
-          projectname: $project
+          projectname: ${{ env.project }}
           projectversion: ${{ env.environment }}
           projecttags: '${{ env.environment }},${{ github.sha }}'
-          parentname: $parent
+          parentname: ${{ env.parent }}
           bomfilename: sbom.json
           autocreate: true
