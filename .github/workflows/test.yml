@@ -40,6 +40,10 @@ jobs:
             --input-files $(find layers -name sbom.cdx.json) \
             --output-file sbom.json
 
+      - run: |
+          echo Parent $parent
+          echo Project $project
+
       - name: Upload SBOM to DTrack
         uses: DependencyTrack/gh-upload-sbom@v3
         with:
