@@ -6,6 +6,11 @@ on:
     branches:
       - main
 
+env:
+  environment: xxx
+  image: ghcr.io/hwolf/xx/test/xx-abc-test:c45b8be14b8dbb3d596c77d14b5331813a48c02b
+  apiKey: XXXXXX
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -18,9 +23,16 @@ jobs:
           brew tap cyclonedx/cyclonedx
           brew install cyclonedx-cli
 
+          parent=${image#*/}
+          parent=${parent%/*}
+          parent=${parent//\//-}
+          
+          project=${image##*/}
+          project=${project%:*}
+
       - name: Download SBOMs
         run: |
-          pack sbom download --remote ghcr.io/hwolf/xx/test/xx-abc-test:c45b8be14b8dbb3d596c77d14b5331813a48c02b
+          pack sbom download --remote ${{ env.image }}
 
       - name: Merge SBOMs
         run: |
@@ -29,5 +41,13 @@ jobs:
             --output-file sbom.json
 
       - name: Upload SBOM to DTrack
-        run: |
-          echo Todo
+        uses: DependencyTrack/gh-upload-sbom@v3
+        with:
+          serverhostname: 'example.com'
+          apikey: ${{ env.apiKey }}
+          projectname: $project
+          projectversion: ${{ env.environment }}
+          projecttags: '${{ env.environment }},${{ github.sha }}'
+          parentname: $parent
+          bomfilename: sbom.json
+          autocreate: true
