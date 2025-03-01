@@ -1,1 +1,1 @@
-FROM docker.io/paketobuildpacks/builder-jammy-java-tiny@sha256:a84b2563e67c4441bd60350a7a0abf90e85df85cd8a91d4e4bdbded62b783ec9
+FROM docker.io/paketobuildpacks/builder-jammy-java-tiny@sha256:c5c53c656d9151071482c79f2460aee477e25d05d83b5286549074707d1f76f1
