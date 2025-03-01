@@ -10,6 +10,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - uses: Homebrew/actions/setup-homebrew@master
       - name: Test
         run: |
           brew --version
