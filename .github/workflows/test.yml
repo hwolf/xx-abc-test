@@ -10,9 +10,16 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: buildpacks/github-actions/setup-pack@v5.8.8
       - name: Test
         run: |
+          brew --version
+          brew tap buildpacks/tap
+          brew install pack
+          
           pack --version
           pack sbom download --remote ghcr.io/hwolf/xx/test/xx-abc-test:c45b8be14b8dbb3d596c77d14b5331813a48c02b
           ls -lR layers
+          
+          brew tap cyclonedx/cyclonedx
+          brew install cyclonedx-cli
+          cyclonedx --version
