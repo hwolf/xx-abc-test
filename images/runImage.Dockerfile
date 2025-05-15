@@ -1,1 +1,1 @@
-FROM docker.io/paketobuildpacks/run-jammy-tiny@sha256:0c5ac79d549c4b077a7d857631f817f8b573f5da2c109a51f320ee584d44d3f2
+FROM docker.io/paketobuildpacks/run-jammy-tiny@sha256:f8e55c2672eaf71347f65ad699b655472985454206dcd200e35e435333930b84
